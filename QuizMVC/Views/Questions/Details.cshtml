@@ -1,0 +1,73 @@
+﻿@model Question
+
+@{
+    ViewData["Title"] = "Question details";
+}
+
+<h1>Question details</h1>
+<hr />
+
+<div>
+    <dl class="row">
+        <dt class="col-sm-2">
+            Quiz
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.QuizName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.QuizId)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.QuizId)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.QuestionCategory)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.QuestionCategory)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.QuestionText)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.QuestionText)
+        </dd>
+        <dt class="col-sm-2">
+            Possible answers
+        </dt>
+        <dd class="col-sm-10">
+            <table class="table-quest-details">
+                <tr>
+                    <th class="table-quest-details-id"></th>
+                    <th class="table-quest-details-ans">Answer</th>
+                    <th class="table-quest-details-correct">Correct</th>
+                </tr>
+                <tr>
+                    <td class ="table-quest-details-id">A</td>
+                    <td>@Html.DisplayFor(model => model.A_Answer)</td>
+                    <td class="table-quest-details-correct">@Html.DisplayFor(model => model.A_Correct)</td>
+                </tr>
+                <tr>
+                    <td class="table-quest-details-id">B</td>
+                    <td>@Html.DisplayFor(model => model.B_Answer)</td>
+                    <td class="table-quest-details-correct">@Html.DisplayFor(model => model.B_Correct)</td>
+                </tr>
+                <tr>
+                    <td class="table-quest-details-id">C</td>
+                    <td>@Html.DisplayFor(model => model.C_Answer)</td>
+                    <td class="table-quest-details-correct">@Html.DisplayFor(model => model.C_Correct)</td>
+                </tr>
+                <tr>
+                    <td class="table-quest-details-id">D</td>
+                    <td>@Html.DisplayFor(model => model.D_Answer)</td>
+                    <td class="table-quest-details-correct">@Html.DisplayFor(model => model.D_Correct)</td>
+                </tr>
+            </table>
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-tertiary">Edit</a> 
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</div>

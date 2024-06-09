@@ -1,0 +1,88 @@
+﻿@model IEnumerable<Question>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    @if (ViewBag.HasQuizzes)
+    {
+        <a asp-action="Create" class="btn btn-secondary">Create New</a>
+    }
+    else
+    {
+    <p>In order to create a new question, create a new Quiz first!</p>
+    }
+</p>
+<hr />
+@if (Model.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Quiz
+                </th>
+                <th>
+                    Question Category
+                </th>
+                <th>
+                    Question
+                </th>
+                <th>
+                    A
+                </th>
+                <th>
+                    B
+                </th>
+                <th>
+                    C
+                </th>
+                <th>
+                    D
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.QuizName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.QuestionCategory)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.QuestionText)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.A_Answer)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.B_Answer)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.C_Answer)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.D_Answer)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-tertiary">Edit</a>
+                        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-secondary">Details</a>
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+}
+else
+{
+    <p>Question database is empty.</p>
+}

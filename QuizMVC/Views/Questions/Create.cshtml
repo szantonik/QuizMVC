@@ -1,0 +1,103 @@
+﻿@model Question
+
+@{
+    ViewData["Title"] = "Create Question";
+}
+
+<h1>Create Question</h1>
+
+<h4>Question</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="QuizId" class="control-label">Quiz</label>
+                <select asp-for="QuizId" class="form-control">
+                    @if (ViewBag.QuizList != null)
+                    {
+                        foreach (var item in ViewBag.QuizList)
+                        {
+                            <option value="@item.Value">@item.Text</option>
+                        }
+                    }
+                </select>
+                <span asp-validation-for="QuizId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="QuestionCategory" class="control-label">Question Category</label>
+                <select asp-for="QuestionCategory" class="form-control" asp-items="ViewBag.QuestionCategoryList"></select>
+                <span asp-validation-for="QuestionCategory" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="QuestionText" class="control-label">Question</label>
+                <input asp-for="QuestionText" class="form-control" />
+                <span asp-validation-for="QuestionText" class="text-danger"></span>
+            </div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Answer</th>
+                        <th>Answer Text</th>
+                        <th>Is Correct</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>A</td>
+                        <td>
+                            <input asp-for="A_Answer" class="form-control" />
+                            <span asp-validation-for="A_Answer" class="text-danger"></span>
+                        </td>
+                        <td>
+                            <input class="form-check-input" asp-for="A_Correct" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>B</td>
+                        <td>
+                            <input asp-for="B_Answer" class="form-control" />
+                            <span asp-validation-for="B_Answer" class="text-danger"></span>
+                        </td>
+                        <td>
+                            <input class="form-check-input" asp-for="B_Correct" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>C</td>
+                        <td>
+                            <input asp-for="C_Answer" class="form-control" />
+                            <span asp-validation-for="C_Answer" class="text-danger"></span>
+                        </td>
+                        <td>
+                            <input class="form-check-input" asp-for="C_Correct" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>D</td>
+                        <td>
+                            <input asp-for="D_Answer" class="form-control" />
+                            <span asp-validation-for="D_Answer" class="text-danger"></span>
+                        </td>
+                        <td>
+                            <input class="form-check-input" asp-for="D_Correct" />
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<div>
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

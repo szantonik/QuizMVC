@@ -1,0 +1,10 @@
+﻿@model SolvingSession
+
+@{
+    ViewData["Title"] = "Results";
+}
+
+<h1>Results for @Model.QuizName</h1>
+<br />
+
+<h3>Your score: @ViewBag.Score / @Model.Questions.Count</h3>
