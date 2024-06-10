@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using QuizMVC.Data.Enum;
 using QuizMVC.Models.Entities;
 
-namespace QuizMVC.Data
+namespace QuizMVC.Models
 {
     public class ApplicationDbContext : IdentityDbContext<IdentityUser>
     {

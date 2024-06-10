@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using QuizMVC.Data;
 using QuizMVC.Data.Enum;
 using QuizMVC.Helpers;
+using QuizMVC.Models;
 using QuizMVC.Models.Entities;
 
 namespace QuizMVC.Controllers

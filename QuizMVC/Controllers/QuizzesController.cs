@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using QuizMVC.Data;
 using QuizMVC.Models.Entities;
 using QuizMVC.Helpers;
 using Microsoft.AspNetCore.Identity;
+using QuizMVC.Models;
 
 namespace QuizMVC.Controllers
 {

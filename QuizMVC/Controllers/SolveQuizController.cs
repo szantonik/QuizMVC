@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using QuizMVC.Data;
 using QuizMVC.Helpers;
 using QuizMVC.Models;
 using QuizMVC.Models.Entities;

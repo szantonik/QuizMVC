@@ -5,14 +5,14 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using QuizMVC.Data;
+using QuizMVC.Models;
 
 #nullable disable
 
 namespace QuizMVC.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240609171316_Init")]
+    [Migration("20240610165919_Init")]
     partial class Init
     {
         /// <inheritdoc />
