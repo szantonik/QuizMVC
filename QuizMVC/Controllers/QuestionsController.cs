@@ -20,6 +20,13 @@ namespace QuizMVC.Controllers
         // GET: Questions
         public async Task<IActionResult> Index()
         {
+            // Check if the user is authenticated
+            if (!User.Identity.IsAuthenticated)
+            {
+                // Redirect to login page
+                return Redirect("/Identity/Account/Login");
+            }
+
             var hasQuizes = await _context.Quizzes.AnyAsync();
             ViewBag.HasQuizzes = hasQuizes;
             return View(await _context.Questions.ToListAsync());
@@ -28,6 +35,13 @@ namespace QuizMVC.Controllers
         // GET: Questions/Details/5
         public async Task<IActionResult> Details(int? id)
         {
+            // Check if the user is authenticated
+            if (!User.Identity.IsAuthenticated)
+            {
+                // Redirect to login page
+                return Redirect("/Identity/Account/Login");
+            }
+
             if (id == null)
             {
                 return NotFound();
@@ -46,6 +60,13 @@ namespace QuizMVC.Controllers
         // GET: Questions/Create
         public IActionResult Create()
         {
+            // Check if the user is authenticated
+            if (!User.Identity.IsAuthenticated)
+            {
+                // Redirect to login page
+                return Redirect("/Identity/Account/Login");
+            }
+
             // Pass Quizlist to View
             ViewBag.QuizList = GetQuizzes();
 
@@ -60,6 +81,13 @@ namespace QuizMVC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("QuizId,QuestionType,QuestionText,A_Answer,B_Answer,C_Answer,D_Answer,A_Correct,B_Correct,C_Correct,D_Correct")] Question question)
         {
+            // Check if the user is authenticated
+            if (!User.Identity.IsAuthenticated)
+            {
+                // Redirect to login page
+                return Redirect("/Identity/Account/Login");
+            }
+
             if (ModelState.IsValid)
             {
                 // Sprawdź, czy co najmniej jedno pole jest zaznaczone
@@ -93,6 +121,13 @@ namespace QuizMVC.Controllers
         // GET: Questions/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+            // Check if the user is authenticated
+            if (!User.Identity.IsAuthenticated)
+            {
+                // Redirect to login page
+                return Redirect("/Identity/Account/Login");
+            }
+
             if (id == null)
             {
                 return NotFound();
@@ -119,6 +154,13 @@ namespace QuizMVC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,QuizId,QuestionType,QuestionText,A_Answer,B_Answer,C_Answer,D_Answer,A_Correct,B_Correct,C_Correct,D_Correct")] Question question)
         {
+            // Check if the user is authenticated
+            if (!User.Identity.IsAuthenticated)
+            {
+                // Redirect to login page
+                return Redirect("/Identity/Account/Login");
+            }
+
             if (id != question.Id)
             {
                 return NotFound();
@@ -159,6 +201,13 @@ namespace QuizMVC.Controllers
         // GET: Questions/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
+            // Check if the user is authenticated
+            if (!User.Identity.IsAuthenticated)
+            {
+                // Redirect to login page
+                return Redirect("/Identity/Account/Login");
+            }
+
             if (id == null)
             {
                 return NotFound();
@@ -178,6 +227,13 @@ namespace QuizMVC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
+            // Check if the user is authenticated
+            if (!User.Identity.IsAuthenticated)
+            {
+                // Redirect to login page
+                return Redirect("/Identity/Account/Login");
+            }
+
             var question = await _context.Questions.FindAsync(id);
             if (question != null)
             {

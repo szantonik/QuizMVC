@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using QuizMVC.Data;
 using QuizMVC.Models.Entities;
 using QuizMVC.Helpers;
+using Microsoft.AspNetCore.Identity;
 
 namespace QuizMVC.Controllers
 {
@@ -32,6 +33,13 @@ namespace QuizMVC.Controllers
         // GET: Quizzes/Details/5
         public async Task<IActionResult> Details(int? id)
         {
+            // Check if the user is authenticated
+            if (!User.Identity.IsAuthenticated)
+            {
+                // Redirect to login page
+                return Redirect("/Identity/Account/Login");
+            }
+
             if (id == null)
             {
                 return NotFound();
@@ -51,6 +59,12 @@ namespace QuizMVC.Controllers
         // GET: Quizzes/Create
         public IActionResult Create()
         {
+            // Check if the user is authenticated
+            if (!User.Identity.IsAuthenticated)
+            {
+                // Redirect to login page
+                return Redirect("/Identity/Account/Login");
+            }
             return View();
         }
 
@@ -61,6 +75,12 @@ namespace QuizMVC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Name,Description")] Quiz quiz)
         {
+            // Check if the user is authenticated
+            if (!User.Identity.IsAuthenticated)
+            {
+                // Redirect to login page
+                return Redirect("/Identity/Account/Login");
+            }
             if (ModelState.IsValid)
             {
                 _context.Add(quiz);
@@ -73,6 +93,12 @@ namespace QuizMVC.Controllers
         // GET: Quizzes/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+            // Check if the user is authenticated
+            if (!User.Identity.IsAuthenticated)
+            {
+                // Redirect to login page
+                return Redirect("/Identity/Account/Login");
+            }
             if (id == null)
             {
                 return NotFound();
@@ -93,6 +119,12 @@ namespace QuizMVC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description")] Quiz quiz)
         {
+            // Check if the user is authenticated
+            if (!User.Identity.IsAuthenticated)
+            {
+                // Redirect to login page
+                return Redirect("/Identity/Account/Login");
+            }
             if (id != quiz.Id)
             {
                 return NotFound();
@@ -124,6 +156,12 @@ namespace QuizMVC.Controllers
         // GET: Quizzes/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
+            // Check if the user is authenticated
+            if (!User.Identity.IsAuthenticated)
+            {
+                // Redirect to login page
+                return Redirect("/Identity/Account/Login");
+            }
             if (id == null)
             {
                 return NotFound();
@@ -145,6 +183,12 @@ namespace QuizMVC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
+            // Check if the user is authenticated
+            if (!User.Identity.IsAuthenticated)
+            {
+                // Redirect to login page
+                return Redirect("/Identity/Account/Login");
+            }
             var quiz = await _context.Quizzes.Include(q => q.Questions).FirstOrDefaultAsync(q => q.Id == id);
             if (quiz == null)
             {
@@ -162,8 +206,5 @@ namespace QuizMVC.Controllers
         {
             return _context.Quizzes.Any(e => e.Id == id);
         }
-
-
-
     }
 }
