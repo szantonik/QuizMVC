@@ -40,6 +40,7 @@ namespace QuizMVC.Controllers
                 return Redirect("/Identity/Account/Login");
             }
 
+            // Quiz id not specified - Quizzes/Details/
             if (id == null)
             {
                 return NotFound();
@@ -48,6 +49,8 @@ namespace QuizMVC.Controllers
             var quiz = await _context.Quizzes
                 .Include(q => q.Questions)
                 .FirstOrDefaultAsync(m => m.Id == id);
+
+            // Quiz id not in database
             if (quiz == null)
             {
                 return NotFound();
