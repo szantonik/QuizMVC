@@ -9,6 +9,7 @@ using QuizMVC.Models.Entities;
 using QuizMVC.Helpers;
 using Microsoft.AspNetCore.Identity;
 using QuizMVC.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace QuizMVC.Controllers
 {
@@ -31,15 +32,9 @@ namespace QuizMVC.Controllers
         }
 
         // GET: Quizzes/Details/5
+        [Authorize]
         public async Task<IActionResult> Details(int? id)
         {
-            // Check if the user is authenticated
-            if (!User.Identity.IsAuthenticated)
-            {
-                // Redirect to login page
-                return Redirect("/Identity/Account/Login");
-            }
-
             // Quiz id not specified - Quizzes/Details/
             if (id == null)
             {
@@ -60,30 +55,20 @@ namespace QuizMVC.Controllers
         }
 
         // GET: Quizzes/Create
+        [Authorize]
         public IActionResult Create()
         {
-            // Check if the user is authenticated
-            if (!User.Identity.IsAuthenticated)
-            {
-                // Redirect to login page
-                return Redirect("/Identity/Account/Login");
-            }
             return View();
         }
 
         // POST: Quizzes/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Name,Description")] Quiz quiz)
         {
-            // Check if the user is authenticated
-            if (!User.Identity.IsAuthenticated)
-            {
-                // Redirect to login page
-                return Redirect("/Identity/Account/Login");
-            }
             if (ModelState.IsValid)
             {
                 _context.Add(quiz);
@@ -94,14 +79,9 @@ namespace QuizMVC.Controllers
         }
 
         // GET: Quizzes/Edit/5
+        [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
-            // Check if the user is authenticated
-            if (!User.Identity.IsAuthenticated)
-            {
-                // Redirect to login page
-                return Redirect("/Identity/Account/Login");
-            }
             if (id == null)
             {
                 return NotFound();
@@ -120,14 +100,9 @@ namespace QuizMVC.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description")] Quiz quiz)
         {
-            // Check if the user is authenticated
-            if (!User.Identity.IsAuthenticated)
-            {
-                // Redirect to login page
-                return Redirect("/Identity/Account/Login");
-            }
             if (id != quiz.Id)
             {
                 return NotFound();
@@ -157,14 +132,9 @@ namespace QuizMVC.Controllers
         }
 
         // GET: Quizzes/Delete/5
+        [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
-            // Check if the user is authenticated
-            if (!User.Identity.IsAuthenticated)
-            {
-                // Redirect to login page
-                return Redirect("/Identity/Account/Login");
-            }
             if (id == null)
             {
                 return NotFound();
@@ -184,14 +154,9 @@ namespace QuizMVC.Controllers
         // POST: Quizzes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            // Check if the user is authenticated
-            if (!User.Identity.IsAuthenticated)
-            {
-                // Redirect to login page
-                return Redirect("/Identity/Account/Login");
-            }
             var quiz = await _context.Quizzes.Include(q => q.Questions).FirstOrDefaultAsync(q => q.Id == id);
             if (quiz == null)
             {
