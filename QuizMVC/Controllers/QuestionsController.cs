@@ -128,6 +128,14 @@ namespace QuizMVC.Controllers
 
             if (ModelState.IsValid)
             {
+                // Check if at least one checkbox checked
+                if (!question.A_Correct && !question.B_Correct && !question.C_Correct && !question.D_Correct)
+                {
+                    ModelState.AddModelError("", "Select at least one correct answer!");
+                    ViewBag.QuizList = GetQuizzes();
+                    ViewBag.QuestionCategoryList = question.QuestionCategory.ToSelectList();
+                    return View(question);
+                }
                 try
                 {
                     var quiz = await _context.Quizzes.FirstOrDefaultAsync(q => q.Id == question.QuizId);
